@@ -26,27 +26,6 @@ function get_path(txn)
   return path_start
 end
 
-function code_vsn_path(txn)
-  local vsn = get_code_vsn(txn)
-  txn.Info(txn, "Code version: " .. vsn)
-  local path = get_path(txn)
-  be = 'default_backend'
-  if path == 'user' then
-     if vsn == '2.0.0' then
-     	be = 'user_v2'
-     else
-	be = 'user_v1'
-     end
-  elseif path == 'biz' then
-     if vsn == '2.0.0' then
-     	be = 'biz_v2'
-     else
-	be = 'biz_v1'
-     end
-  end
-  return be
-end
-
 function code_vsn_path_map(txn)
   local vsn = get_code_vsn(txn)
   txn.Info(txn, "Code version: " .. vsn)
