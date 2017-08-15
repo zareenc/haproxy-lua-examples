@@ -24,8 +24,6 @@ function read_file()
       end
     end
 
-    -- TODO reload HAProxy if diff:
-    -- haproxy -f <filename.conf> -sf <PID>
     core.sleep(sleep_time)
   end
 end

@@ -1,5 +1,5 @@
 -- This Lua script redirects requests based on
--- HTTP request host, path, or header.
+-- HTTP request port or path.
 
 function path_redirect(txn)
   local result = ''
@@ -17,10 +17,9 @@ end
 
 core.register_fetches("path_redirect", path_redirect)
 
-function host_redirect(txn)
+function port_redirect(txn)
   local base = txn.sf:base()
   local host, port, rest = string.match(base, '([^:]+):([^/]+)/?(.+)]?')
-  -- local port = txn.sf:url_port()
   txn.Info(txn, 'Port: ' .. port)
   if port == '8001' or port == '8002' then
      return 'foo_backend'
@@ -31,4 +30,4 @@ function host_redirect(txn)
   end
 end
 
-core.register_fetches("host_redirect", host_redirect)
+core.register_fetches("host_redirect", port_redirect)
