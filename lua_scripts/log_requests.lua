@@ -3,14 +3,8 @@
 mp = Map.new("maps/ip_svc.map", Map.str)
 
 function log_from(txn)
-  -- local date = txn.sc:http_date(txn.f:date())
-  -- local log_text = date .. " Request sent to: " .. txn.sf:base()
-  -- local log_text = date .. " Request from: " .. txn.f:req_hdr("From",-1)
-  -- local hdr_from = txn.f:req_hdr("From", -1)
-  -- local ip_from = txn.f:req_hdr("X-Forwarded-For", -1)
   ip_from = txn.f:src()
   txn.Info(txn, 'Source: ' .. txn.f:src())
-  -- local hdr_from = txn.http:req_get_headers()["from"][0]
   if ip_from == nil then
      return 'N/A'
   end
